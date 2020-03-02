@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>T4TEQ Software Solutions - Best Training Company</title>
+		<meta name="description" content="T4TEQ Software Solutions is one of the top training company in Tamil, We are providing placement training for students of all colleges in and around Tamil Nadu" />
+		<meta name="author" content="T4TEQ" />
+		<meta name="Keywords" content="training,trichy,terasoft,T4TEQ,Tera soft,placement,C,C++,CPP,python, python trichy,c,cpp,java,advanced,interview,dotnet,.net,asp.net,logo,college,top,students,mock interview,learn,easy,money,trichy java,hacking" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/icon" href="{{ url_for('static',filename='icon/favicon.ico')}}" />
+		<!-- Font Awesome -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+		<!-- Line icon -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
+		<!-- Bootstrap -->
+		<link href="{{ url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet" />
+		<!-- Slick slider -->
+		<link href="{{ url_for('static',filename='css/slick.css')}}" rel="stylesheet" />
+		<!-- Gallery Lightbox -->
+		<link href="{{ url_for('static',filename='css/magnific-popup.css')}}" rel="stylesheet" />
+		<!-- Theme color -->
+		<link id="switcher" href="{{ url_for('static',filename='css/theme-color/default-theme.css')}}" rel="stylesheet" />
+
+		<!-- Main Style -->
+		<link href="{{ url_for('static',filename='css/style.css')}}" rel="stylesheet" />
+
+		<!-- Chatbot Style -->
+		<link href="{{ url_for('static',filename='css/chatbot.css')}}" rel="stylesheet" />
+
+		<!-- Fonts -->
+
+		<!-- Open Sans for body font -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet" />
+		<!-- Montserrat for Title -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+
+		<link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static',filename='icon/apple-icon-57x57.png')}}" />
+		<link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static',filename='icon/apple-icon-60x60.png')}}" />
+		<link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static',filename='icon/apple-icon-72x72.png')}}" />
+		<link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static',filename='icon/apple-icon-76x76.png')}}" />
+		<link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static',filename='icon/apple-icon-114x114.png')}}" />
+		<link rel="apple-touch-icon" sizes="120x120" href="{{ url_for('static',filename='icon/apple-icon-120x120.png')}}" />
+		<link rel="apple-touch-icon" sizes="144x144" href="{{ url_for('static',filename='icon/icon/apple-icon-144x144.png')}}" />
+		<link rel="apple-touch-icon" sizes="152x152" href="{{ url_for('static',filename='icon/apple-icon-152x152.png')}}" />
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static',filename='icon/apple-icon-180x180.png')}}" />
+		<link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static',filename='icon/android-icon-192x192.png')}}" />
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static',filename='icon/favicon-32x32.png')}}" />
+		<link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static',filename='icon/favicon-96x96.png')}}" />
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static',filename='icon/favicon-16x16.png')}}" />
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!-- Chatbot SocketIO Connection -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				var socket = io.connect("http://127.0.0.1:5000");
+
+				socket.on("connect", function() {
+					socket.send("I'm connected!");
+				});
+
+				socket.on("message", function(msg) {});
+			});
+		</script>
+
+		{% block content %} {% endblock content %}
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<!-- Bootstrap js -->
+		<script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js')}}"></script>
+		<!-- Slick slider js -->
+		<script type="text/javascript" src="{{ url_for('static',filename='js/slick.min.js')}}"></script>
+		<!-- Counter js -->
+		<script type="text/javascript" src="{{ url_for('static',filename='js/counter.js')}}"></script>
+		<!-- Filterable Gallery js -->
+		<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.filterizr.min.js')}}"></script>
+		<!-- Gallery Lightbox -->
+		<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.magnific-popup.min.js')}}"></script>
+
+		<!-- Custom js -->
+		<script type="text/javascript" src="{{ url_for('static',filename='js/custom.js')}}"></script>
+
+		<!-- Chatbot js -->
+		<script type="text/javascript" src="{{ url_for('static',filename='js/chatbot.js')}}"></script>
+	</body>
+</html>
