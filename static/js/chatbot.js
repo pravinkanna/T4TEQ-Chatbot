@@ -79,6 +79,8 @@ function sendNewMessage() {
             response = msg;
             messagesContainer.append(['<li class="other">', response, '</li>'].join(''));
         });
+
+        socket.disconnect();
     });
 
 
@@ -91,6 +93,8 @@ function sendNewMessage() {
     messagesContainer.finish().animate({
         scrollTop: messagesContainer.prop("scrollHeight")
     }, 250);
+
+
 }
 
 function onMetaAndEnter(event) {
