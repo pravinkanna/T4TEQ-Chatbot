@@ -1,6 +1,7 @@
 var element = $('.floating-chat');
 var myStorage = localStorage;
 
+
 if (!myStorage.getItem('chatID')) {
     myStorage.setItem('chatID', createUUID());
 }
@@ -57,10 +58,11 @@ function sendNewMessage() {
     var userInput = $('.text-box');
     var query = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
     var messagesContainer = $('.messages');
-    var response;
+    socket = io.connect();
+
 
     $(document).ready(function () {
-        var socket = io.connect("http://127.0.0.1:5000");
+
 
         //Send a Message to Backend
         socket.on("connect", function () {
@@ -69,18 +71,16 @@ function sendNewMessage() {
             });
         });
 
+        if (!query) return;
+        messagesContainer.append(['<li class="self">', query, '</li>'].join(''));
+
         //Receive a Message from backend
         socket.on("backendResponse", function (msg) {
             response = msg;
-            console.log(response);
             messagesContainer.append(['<li class="other">', response, '</li>'].join(''));
         });
     });
 
-    console.log(query, response);
-    if (!query) return;
-
-    messagesContainer.append(['<li class="self">', query, '</li>'].join(''));
 
 
     // clean out old message
