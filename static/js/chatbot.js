@@ -60,10 +60,7 @@ function sendNewMessage() {
     var messagesContainer = $('.messages');
     socket = io.connect()
 
-
     $(document).ready(function () {
-
-
         //Send a Message to Backend
         socket.on("connect", function () {
             socket.emit("userQuery", {
@@ -80,7 +77,6 @@ function sendNewMessage() {
             messagesContainer.append(['<li class="other">', response, '</li>'].join(''));
         });
 
-        socket.disconnect();
     });
 
 
