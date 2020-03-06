@@ -14,7 +14,6 @@ def handleConnection(json):
     response = chatbotMain(query)
     print('query: ' + query)
     print('response:' + response)
-
     socketio.emit("backendResponse",response)
 
 @app.route('/',methods=['GET'])
@@ -22,4 +21,4 @@ def chatbot():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    socketio.run(app,debug=True)
+    socketio.run(app)

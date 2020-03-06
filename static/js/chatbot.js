@@ -69,14 +69,16 @@ function sendNewMessage() {
         });
 
         if (!query) return;
+        console.log(messagesContainer);
+
         messagesContainer.append(['<li class="self">', query, '</li>'].join(''));
 
         //Receive a Message from backend
         socket.on("backendResponse", function (msg) {
             response = msg;
+            console.log(messagesContainer);
             messagesContainer.append(['<li class="other">', response, '</li>'].join(''));
         });
-
     });
 
 
