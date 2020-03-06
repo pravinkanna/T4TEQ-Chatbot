@@ -58,7 +58,7 @@ function sendNewMessage() {
     var userInput = $('.text-box');
     var query = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
     var messagesContainer = $('.messages');
-    socket = io.connect();
+    socket = io.connect()
 
 
     $(document).ready(function () {
