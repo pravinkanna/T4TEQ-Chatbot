@@ -55,39 +55,19 @@ function createUUID() {
 }
 
 function sendNewMessage() {
-    query = ''
-    response = ''
     userInput = $('.text-box');
     query = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
     messagesContainer = $('.messages');
-    socket = io.connect();
 
     console.log(query);
 
     if (!query || query == '') return;
-
-    $(document).ready(function () {
-        //Send a Message to Backend
-        socket.on("connect", function () {
-            socket.emit("userQuery", {
-                data: query
-            });
-        });
-
-        i = 0;
-
-        //Receive a Message from backend
-        socket.on("backendResponse", function (msg) {
-            response = msg;
-
-            if (i == 0) {
-                messagesContainer.append(['<li class="other">', response, '</li>'].join(''));
-                i++;
-            }
-        });
-    });
-
     messagesContainer.append(['<li class="self">', query, '</li>'].join(''));
+    $.get("/get", { msg: query }).done(function (data) {
+        response = data;
+        console.log(response);
+        messagesContainer.append(['<li class="other">', response, '</li>'].join(''));
+    });
 
     // clean out old message
     userInput.html('');
