@@ -5,8 +5,10 @@ import random
 import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
+from nltk.stem import PorterStemmer
 
 lemmatizer = WordNetLemmatizer()
+ps = PorterStemmer()
 
 model = load_model('chatbot_model.h5')
 intents = json.loads(open('intents.json').read())
@@ -15,6 +17,7 @@ classes = pickle.load(open('classes.pkl','rb'))
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
+    sentence_words = [ps.stem(w.lower()) for w in sentence_words]
     sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
     return sentence_words
 
@@ -65,15 +68,15 @@ def chatbotMain(query):
     response = chatbot_response(query)
     return response
 
-# if __name__ == "__main__":
-#     flag = True
-#     print("Mr.Bot: I am Mr.Bot. Ask me anything about python. Type Bye to exit")
-#     while(flag):
-#         print("You: ",end='')
-#         msg = input().lower()
-#         if msg!="bye":
-#             res = "Mr.Bot: " + chatbot_response(msg)
-#             print(res)
-#         else:
-#             print("Mr.Bot: See you again... Bye!")
-#             flag = False
+if __name__ == "__main__":
+    flag = True
+    print("Mr.Bot: I am Mr.Bot. Ask me anything about python. Type Bye to exit")
+    while(flag):
+        print("You: ",end='')
+        msg = input().lower()
+        if msg!="bye":
+            res = "Mr.Bot: " + chatbot_response(msg)
+            print(res)
+        else:
+            print("Mr.Bot: See you again... Bye!")
+            flag = False

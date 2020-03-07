@@ -6,10 +6,12 @@ import numpy as np
 import pickle
 import json
 from nltk.stem import WordNetLemmatizer
+from nltk.stem import PorterStemmer
 import nltk
 nltk.download('punkt')
 nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
+ps = PorterStemmer()
 
 words = []
 
@@ -43,6 +45,10 @@ for intent in intents['intents']:
 
             classes.append(intent['tag'])
 
+# stemming every words in indent.json
+words = [ps.stem(w.lower()) for w in words if w not in ignore_words]
+
+# Lemmetizing every words in indent.json
 words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_words]
 
 words = sorted(list(set(words)))
@@ -82,8 +88,7 @@ for doc in documents:
 
     # lemmatize each word - create base word, in attempt to represent related words
 
-    pattern_words = [lemmatizer.lemmatize(
-        word.lower()) for word in pattern_words]
+    pattern_words = [lemmatizer.lemmatize(word.lower()) for word in pattern_words]
 
     # create our bag of words array with 1, if word match found in current pattern
 
