@@ -55,10 +55,16 @@ function createUUID() {
 }
 
 function sendNewMessage() {
-    var userInput = $('.text-box');
-    var query = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
-    var messagesContainer = $('.messages');
-    socket = io.connect()
+    query = ''
+    response = ''
+    userInput = $('.text-box');
+    query = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
+    messagesContainer = $('.messages');
+    socket = io.connect();
+
+    console.log(query);
+
+    if (!query || query == '') return;
 
     $(document).ready(function () {
         //Send a Message to Backend
@@ -68,35 +74,34 @@ function sendNewMessage() {
             });
         });
 
-        if (!query) return;
-        console.log(messagesContainer);
-
-        messagesContainer.append(['<li class="self">', query, '</li>'].join(''));
+        i = 0;
 
         //Receive a Message from backend
         socket.on("backendResponse", function (msg) {
             response = msg;
-            console.log(messagesContainer);
-            messagesContainer.append(['<li class="other">', response, '</li>'].join(''));
+
+            if (i == 0) {
+                messagesContainer.append(['<li class="other">', response, '</li>'].join(''));
+                i++;
+            }
         });
     });
 
-
+    messagesContainer.append(['<li class="self">', query, '</li>'].join(''));
 
     // clean out old message
     userInput.html('');
     // focus on input
     userInput.focus();
 
+
     messagesContainer.finish().animate({
         scrollTop: messagesContainer.prop("scrollHeight")
     }, 250);
-
-
 }
 
 function onMetaAndEnter(event) {
-    if ((event.metaKey || event.ctrlKey) && event.keyCode == 13) {
+    if (event.keyCode == 13) {
         sendNewMessage();
     }
 }
