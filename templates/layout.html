@@ -36,6 +36,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet" />
 		<!-- Montserrat for Title -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+		<!-- Noto Sans for Chatbot -->
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" />
 
 		<link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static',filename='icon/apple-icon-57x57.png')}}" />
 		<link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static',filename='icon/apple-icon-60x60.png')}}" />
@@ -58,9 +60,6 @@
 		<![endif]-->
 	</head>
 	<body>
-		<!-- Chatbot SocketIO Connection -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-
 		{% block content %} {% endblock content %}
 
 		<!-- jQuery library -->
