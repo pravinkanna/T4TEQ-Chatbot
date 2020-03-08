@@ -19,7 +19,7 @@ classes = []
 
 documents = []
 
-ignore_words = ['?', '!']
+ignore_words = ['?', '!',':','.',',']
 
 data_file = open('intents.json').read()
 
@@ -49,7 +49,7 @@ for intent in intents['intents']:
 words = [ps.stem(w.lower()) for w in words if w not in ignore_words]
 
 # Lemmetizing every words in indent.json
-words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_words]
+# words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_words]
 
 words = sorted(list(set(words)))
 
