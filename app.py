@@ -2,7 +2,7 @@ from flask import Flask, escape, request, render_template, url_for
 from Model import chatbotMain
 import pymongo
 import datetime
-from database import insertMessage
+from database import insertIntoDB
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def chatbot():
 def get_bot_response():
     query = request.args.get('msg')
     response = chatbotMain(query)
-    insertMessage(query,response)
+    insertIntoDB(query,response)
     return str(response)
 
 if __name__ == "__main__":
