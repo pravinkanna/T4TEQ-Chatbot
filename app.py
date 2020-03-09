@@ -1,5 +1,14 @@
 from flask import Flask, escape, request, render_template, url_for
 from Model import chatbotMain
+import pymongo
+import datetime
+from database import insertMessage
+
+myClient = pymongo.MongoClient("mongodb+srv://admin:pk123456@cluster0-rwpek.mongodb.net/test?retryWrites=true&w=majority")
+
+myDb = myClient["Chatbot"] 
+
+myCol = myDb["messages"]
 
 app = Flask(__name__)
 
@@ -13,8 +22,7 @@ def chatbot():
 def get_bot_response():
     query = request.args.get('msg')
     response = chatbotMain(query)
-    print("Query: ", query)
-    print("Response: ", response)
+    insertMessage(query,response)
     return str(response)
 
 if __name__ == "__main__":
