@@ -4,21 +4,21 @@ import pymongo
 import datetime
 from database import insertMessage
 
+app = Flask(__name__)
+
+app.config['SECRET_KEY'] = '43c018686f6f8dee825420285a01f0ba'
+
 myClient = pymongo.MongoClient("mongodb+srv://admin:pk123456@cluster0-rwpek.mongodb.net/test?retryWrites=true&w=majority")
 
 myDb = myClient["Chatbot"] 
 
 myCol = myDb["messages"]
 
-app = Flask(__name__)
-
-app.config['SECRET_KEY'] = '43c018686f6f8dee825420285a01f0ba'
-
-@app.route('/',methods=['GET'])
+@app.route('/', methods=['GET'])
 def chatbot():
     return render_template('index.html')
 
-@app.route("/get")
+@app.route("/get", methods=['GET'])
 def get_bot_response():
     query = request.args.get('msg')
     response = chatbotMain(query)
